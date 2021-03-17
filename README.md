@@ -1,5 +1,7 @@
 [![DockerHub](https://img.shields.io/badge/DockerHub-gray.svg?style=popout&logo=Docker)](https://hub.docker.com/repository/docker/nathaliagg/rstudio-xcms)
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/nathaliagg/rstudio-xcms/latest?style=for-the-badge">
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/nathaliagg/docker_xcms">
+
 
 # Docker container for `xcms`
 
