@@ -9,7 +9,7 @@ Based on the [Rocker-Project.org](https://www.rocker-project.org/) Docker [RStud
 
 This container is intended to run on the CyVerse data science workbench, called [VICE](https://cyverse-visual-interactive-computing-environment.readthedocs-hosted.com/en/latest/index.html). Full instructions available [here](https://github.com/cyverse-vice/rstudio-verse).
 
-## 1 - Pull the container from DockerHub
+## 1 - Pull the container from [DockerHub](https://hub.docker.com/repository/docker/nathaliagg/rstudio-xcms)
 
 ```
 docker pull nathaliagg/rstudio-xcms:1.0
