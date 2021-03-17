@@ -1,4 +1,8 @@
-
+---
+output: html_document
+editor_options:
+  chunk_output_type: console
+---
 
 ## PROJECT NAME
 
@@ -32,14 +36,14 @@ pd <- read.csv("path/to/metadata.csv")
 files <- as.vector(paste0("path/to/data_mzxml/", pd$FileName))
 
 # Read the data:
-data_cent <- readMSData(files, 
-                        pdata = new("NAnnotatedDataFrame", pd), 
+data_cent <- readMSData(files,
+                        pdata = new("NAnnotatedDataFrame", pd),
                         mode = "onDisk",
                         verbose = TRUE)
 ```
 
 
-The MS experiment is now represented as an `OnDiskMSnExp` object. 
+The MS experiment is now represented as an `OnDiskMSnExp` object.
 
 Information stored in the `OnDiskMSnExp` object after import:
 ```{r}
@@ -65,7 +69,7 @@ save(data_cent, pd, file = "data_centroided.RData")
 ```
 
 
-## 2 - Pre-processing 
+## 2 - Pre-processing
 
 
 #### 2.1 - Chromatographic peak detection
@@ -114,9 +118,9 @@ bandwith = 30 # default
 size_overlap_slices = 0.25 # default
 
 ## a - define PeakDensityParam
-pdp <- PeakDensityParam(sampleGroups = data_cent$LeafType, 
-                        bw = bandwith, # default 
-                        minFraction = mfraction, 
+pdp <- PeakDensityParam(sampleGroups = data_cent$LeafType,
+                        bw = bandwith, # default
+                        minFraction = mfraction,
                         binSize = size_overlap_slices # default
                         )
 ## b - Group peaks
@@ -143,7 +147,7 @@ Retention time correction with either *obiwarp* or *peakGroups* is performed on 
 
 ```{r}
 ## define PeakDensityParam
-pdp <- PeakDensityParam(sampleGroups= data_cent$LeafType, 
+pdp <- PeakDensityParam(sampleGroups= data_cent$LeafType,
                         bw = bandwith,
                         minFraction = mfraction,
                         binSize = size_overlap_slices
@@ -197,7 +201,7 @@ number_na_f
 fmat_fld <- featureValues(data_cent, value="into", method="maxint")
 
 ## replace NA with zero
-fmat_fld[is.na(fmat_fld)] <- 0 
+fmat_fld[is.na(fmat_fld)] <- 0
 
 ## replace colnames with samplecode
 fmat_fld <- as.data.frame(fmat_fld)
@@ -249,11 +253,11 @@ filteredMs2Spectra <- clean(filteredMs2Spectra, all = TRUE)
 
 filteredMs2Spectra <- formatSpectraForGNPS(filteredMs2Spectra) # this is one of the custom funtions
 
-filteredMs2Spectra_consensus <- combineSpectra(filteredMs2Spectra, 
-                                               fcol = "feature_id", 
-                                               method = consensusSpectrum, 
-                                               mzd = 0, 
-                                               minProp = 0.5, 
+filteredMs2Spectra_consensus <- combineSpectra(filteredMs2Spectra,
+                                               fcol = "feature_id",
+                                               method = consensusSpectrum,
+                                               mzd = 0,
+                                               minProp = 0.5,
                                                ppm = 25,
                                                intensityFun = median,
                                                mzFun = median)
@@ -269,4 +273,3 @@ mod_writeMgfDataFile(filteredMs2Spectra_consensus,
 ```{r}
 save.image(file = "xcms_pre-processed.RData")
 ```
-

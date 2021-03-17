@@ -1,4 +1,4 @@
-[![DockerHub](https://img.shields.io/badge/DockerHub-gray.svg?style=popout&logo=Docker)](https://hub.docker.com/r/cyversevice/rstudio-base)
+[![DockerHub](https://img.shields.io/badge/DockerHub-gray.svg?style=popout&logo=Docker)](https://hub.docker.com/repository/docker/nathaliagg/rstudio-xcms)
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/nathaliagg/docker_xcms">
 
 # Docker container for `xcms`
@@ -15,10 +15,10 @@ This container is intended to run on the CyVerse data science workbench, called 
 docker pull nathaliagg/rstudio-xcms:1.0
 ```
 
-## 2 - Run
+## 2 - Run on Atmosphere VM
 
 ```
-
+docker run -it --rm -v /$HOME:/app --workdir /app -p 8787:80 -e REDIRECT_URL=http://<IP_ADDRESS_ATMO_VM>:8787 nathaliagg/rstudio-xcms:1.0
 ```
 
 The default username is `rstudio` and password is `rstudio1`. To reset the password, add the flag `-e PASSWORD=<yourpassword>` in the `docker run` statement.
