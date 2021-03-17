@@ -14,4 +14,8 @@ RUN apt-get update \
 RUN R -e "install.packages('BiocManager', dependencies=TRUE)"
 RUN R -e "remotes::install_github('HenrikBengtsson/matrixStats')"
 RUN R -e "BiocManager::install(c('MatrixGenerics','DelayedArray','SummarizedExperiment', 'mzR', 'MSnbase', 'xcms'))"
+WORKDIR "/home/rstudio"
+RUN mkdir PROJECT_NAME
+ADD https://raw.githubusercontent.com/nathaliagg/docker_xcms/main/modified_writeMgfData.R /home/rstudio/PROJECT_NAME/modified_writeMgfData.R
+ADD https://raw.githubusercontent.com/nathaliagg/docker_xcms/main/template_pre-processing.Rmd /home/rstudio/PROJECT_NAME/template_pre-processing.Rmd
 
